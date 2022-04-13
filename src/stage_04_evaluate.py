@@ -3,7 +3,10 @@ import argparse
 from src.utils.common_utils import read_params,save_reports
 import logging
 from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
-import joblib
+import joblib 
+
+logging_fmt = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+logging.basicConfig(level=logging.DEBUG, format=logging_fmt)
 
 def eval_metrices(actual,predected):
     rmse= mean_squared_error(actual,predected)
@@ -24,6 +27,8 @@ def evaluate(config_path):
     test_x = test.drop(target, axis=1)
 
     lr= joblib.load(model_path)
+    logging.info(f"model is loaded for prediction at {model_path}")
+
     predicted_values= lr.predict(test_x)
 
     rmse,mae,r2 = eval_metrices(test_y, predicted_values)
@@ -41,5 +46,7 @@ if __name__=='__main__':
 
     try:
         data= evaluate(config_path=parsed_args.config)
+        logging.info(f"evaluation stage-4 completed")
     except Exception as e:
-        raise e 
+        logging.error(e)
+        #raise e 

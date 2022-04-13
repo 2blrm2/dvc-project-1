@@ -52,13 +52,11 @@ stages:
       - artifacts/processed_data/test.csv
       - src/stage_04_evaluate.py
       - artifacts/saved_models/model.joblib
-
     params:
       - base.target_col
       - artifacts.split_data.test_path
       - artifacts.model_dir
       - artifacts.model_path
-
     metrics:
       - artifacts/report/scores.json:
           cache : false

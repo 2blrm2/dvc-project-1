@@ -3,7 +3,10 @@ import argparse
 from src.utils.common_utils import read_params,create_dir, save_reports
 import logging
 from sklearn.linear_model import ElasticNet
-import joblib
+import joblib  
+
+logging_fmt = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+logging.basicConfig(level=logging.DEBUG, format=logging_fmt)
 
 def train(config_path):
     config= read_params(config_path) 
@@ -36,6 +39,8 @@ def train(config_path):
     save_reports(params_file,params)
 
     joblib.dump(lr,model_path)
+    logging.info(f"model saved at {model_path}")
+
 
 
 if __name__=='__main__':
@@ -45,5 +50,8 @@ if __name__=='__main__':
 
     try:
         data= train(config_path=parsed_args.config)
+        logging.info(f"training stage-3 completed")
+
     except Exception as e:
-        raise e 
+        logging.error(e)
+        #raise e 
