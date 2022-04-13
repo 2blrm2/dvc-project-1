@@ -9,13 +9,10 @@ def train(config_path):
     config= read_params(config_path) 
     artifacts= config['artifacts']
     split_data = artifacts['split_data']
-    processed_data_dir= split_data['processed_data_dir'] 
     train_data_path= split_data['train_path']
-    test_data_path= split_data['test_path']
     base = config['base']
     random_seed= base['random_state']
     target=base['target_col']
-
     reports =artifacts['reports']
     reports_dir =reports['reports_dir']
     model_dir = artifacts['model_dir']
@@ -39,8 +36,6 @@ def train(config_path):
     save_reports(params_file,params)
 
     joblib.dump(lr,model_path)
-
-
 
 
 if __name__=='__main__':

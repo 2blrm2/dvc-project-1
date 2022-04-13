@@ -48,8 +48,8 @@ stages:
       md5: d6dded45f97a8e239b8321d3fdc695b7
       size: 74914
     - path: src/stage_03_train.py
-      md5: 0788a15f306bd92db2809b14be3cfe86
-      size: 1612
+      md5: 33272540f67e8b3ac07a39c438b03d6c
+      size: 1502
     params:
       params.yaml:
         artifacts.split_data.train_path: artifacts/processed_data/train.csv
