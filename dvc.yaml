@@ -1,5 +1,6 @@
 
 stages:
+
   load_data:
     cmd: python src/stage_01_load_and_save.py --config=params.yaml
     deps:
@@ -17,7 +18,6 @@ stages:
     deps:
       - artifacts/raw_local_data_dir/data.csv
       - src/stage_02_split_data.py
-      
     params:
       - artifacts.raw_local_data
       - artifacts.split_data.processed_data_dir
@@ -25,7 +25,23 @@ stages:
       - artifacts.split_data.test_path
       - base.random_state
       - base.test_size
-
     outs:
       - artifacts/processed_data/train.csv
       - artifacts/processed_data/test.csv
+
+  train:
+    cmd: python src/stage_03_train.py --config=params.yaml
+    deps:
+      - artifacts/processed_data/train.csv
+      - src/stage_03_train.py
+    params:
+      - base.random_state
+      - base.target_col
+      - artifacts.split_data.train_path
+      - estimators.ElasticNet.params.alpha
+      - estimators.ElasticNet.params.l1_ratio
+    metrics:
+      - artifacts/report/parms.json:
+          cache : false
+    outs:
+      - artifacts/saved_models/model.joblib
