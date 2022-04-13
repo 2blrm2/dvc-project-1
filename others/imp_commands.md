@@ -1,1 +1,6 @@
-# git add . && git commit -m "readme updated" && git push origin main
+git add . && git commit -m "readme updated" && git push origin main
+
+dvc repro
+
+dvc dag
+

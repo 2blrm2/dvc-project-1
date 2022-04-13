@@ -20,7 +20,7 @@ artifacts:
   reports:
     reports_dir: artifacts/report
     params: artifacts/report/parms.json
-    scoress: artifacts/report/scoress.json
+    scores: artifacts/report/scores.json
   
   model_dir: artifacts/saved_models
   model_path: artifacts/saved_models/model.joblib
@@ -30,7 +30,7 @@ estimators:
     params:
       alpha: 0.9
       l1_ratio: 0.4
-      
+
 
 
 
