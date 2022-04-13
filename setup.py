@@ -12,9 +12,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/c17hawke/simple-dvc-project",
     author_email="2blrm2@gmail.com",
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
-    #packages=["src"],
+    #package_dir={"": "src"},
+    #packages=find_packages(where="src"),
+    packages=["src"],
     license="GNU",
     python_requires=">=3.6",
     install_requires=[

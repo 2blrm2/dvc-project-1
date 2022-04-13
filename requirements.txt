@@ -1,5 +1,5 @@
-# local lib
-#-e .
+# install local lib in our environment  like src
+-e .
 
 # dvc
 dvc
